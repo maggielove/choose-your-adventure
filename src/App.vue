@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Welcome Stranger"/>
+    <StoryFrame msg="Welcome Stranger"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import StoryFrame from './components/StoryFrame.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    StoryFrame
   }
 }
 </script>

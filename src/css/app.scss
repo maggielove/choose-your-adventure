@@ -1,10 +1,5 @@
-/* TODO import styles from story.json */
-$loading-screen-background: #ffc100;
-$loading-screen-accent: #916f04;
-
 body {
     margin: 0 auto;
-    background-color: $loading-screen-background;
 }
 
 #app {
@@ -18,48 +13,56 @@ body {
 
 #game-container {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: repeat(11, 1fr);
     justify-content: center;
     border: 1rem solid #000;
     grid-column: 2 / 14;
+}
 
-    h1 {
-        display: grid;
-        text-transform: uppercase;
-        grid-column: 4 / 11;
-    }
+h1 {
+    display: grid;
+    text-transform: uppercase;
+    grid-column: 4 / 11;
+}
 
-    #index {
-        display: inline-block;
-        font-size: 6.25rem;
-    }
+#narrative {
+    display: grid;
+    // justify-content: center;
+    grid-column: 3 / 11;
+    grid-auto-flow: column;
+    // grid-template-columns: repeat(2, 3fr);
+    grid-column-gap: 1fr;
+}
 
-    #narrative {
-        display: grid;
-        // justify-content: center;
-        grid-column: 3 / 11;
-        grid-auto-flow: column;
-        // grid-template-columns: repeat(2, 3fr);
-        grid-column-gap: 1fr;
-    }
+// #index, .control {
+//     background-color: $loading-screen-background;
+// }
 
-    #controls-container {
-        display: flex;
-        justify-content: space-between;
-        grid-column: 1 / 14;
-        transform: translateY(1rem);
+#index {
+    display: inline-block;
+    font-size: 6.25rem;
+    padding: 0 0 0 0.25em;
+    line-height: 1;
+    transform: translate(1rem, -1rem);
+}
 
-    }
+#controls-container {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    grid-column: 1 / 14;
+    transform: translateY(1rem);
+}
 
-    .control {
-        font-size: 3rem;
-        display: flex;
-        background-color: $loading-screen-background;
-        padding: 0 0.5em;
-        border: none;
+.control {
+    margin: 0;
+    font-size: 3rem;
+    display: flex;
+    padding: 0 0.5em;
+    border: none;
+    line-height: 1;
 
-        &:hover {
-            cursor: pointer;
-        }
+    &:hover {
+        cursor: pointer;
     }
 }
