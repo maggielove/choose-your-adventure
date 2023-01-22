@@ -2,13 +2,14 @@ body {
     margin: 0 auto;
 }
 
-#app {
+.app {
     display: grid;
     // width: 100%;
     /* TODO add minmax for smaller screeens */
     grid-template-columns: repeat(14, 1fr);
     grid-column-gap: 1%;
     justify-content: space-between;
+    padding: 60px 0 60px 0;
 }
 
 #game-container {
