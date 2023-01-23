@@ -59,10 +59,13 @@ export default {
     grid-column-gap: 1%;
     justify-content: space-between;
     padding: 60px 0 60px 0;
+    height: 100%;
 }
 
 .app.loading {
     background-color: #ffc100;
+    width: 100vw;
+    height: 100vh;
 }
 
 .app.loaded {

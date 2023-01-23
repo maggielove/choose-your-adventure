@@ -10,7 +10,7 @@
         <div id="text" v-html="frames[selectedIndex].content[0].text">
         </div>
         <div id="illustration">
-            <img src="../assets/img/03.png" />
+            <img v-bind:src="require('../assets/' + frames[selectedIndex].content[1].src)" />
         </div>
       </div>
       <ul class="controls-container" v-bind:class="{ 'single-button':
@@ -100,7 +100,7 @@ h1 {
 
 .narrative {
     display: grid;
-    grid-column: 2 / 11;
+    grid-column: 3 / 11;
     grid-auto-flow: column;
     grid-column-gap: 1fr;
     text-align: left;
@@ -111,20 +111,25 @@ h1 {
 .narrative.text-only {
     display: block;
     columns: 2;
+    column-gap: 10%;
 }
 
 .narrative.text-only p:first-child {
     margin-top: 0;
 }
 
+.narrative.illustrated {
+    grid-template-columns: repeat(7, 1fr);
+}
+
 .narrative.illustrated #text {
-    grid-column: 2 / 5;
+    grid-column: 1 / 4;
 }
 
 .narrative.illustrated #illustration {
     display: grid;
     grid-auto-flow: column;
-    grid-column: 5 / 11;
+    grid-column: 5 / 8;
 }
 
 .narrative.illustrated img {
