@@ -1,29 +1,33 @@
 <template>
   <div
     class="app"
-    v-if="this.frames.length > 0"
-    v-bind:style="{ backgroundColor: this.frames[selectedIndex].colors.bg }"
+    :style="cssProps"
+    v-bind:class="{'loading' : this.isLoading === true, 'loaded' : this.isLoading === false }"
   >
+    <LoadingFrame v-if="this.isLoading === true" />
     <StoryFrame
+        v-else-if="this.isLoading === false"
         v-bind:frames="this.frames"
         v-bind:selectedIndex="this.selectedIndex"
         @update_index="(controlIndex) =>
-        this.selectedIndex = this.frames[this.selectedIndex].controls[controlIndex].linkindex"
-    />
+        this.selectedIndex = this.frames[this.selectedIndex].controls[controlIndex].linkindex" />
   </div>
 </template>
 
 <script>
 import axios  from 'axios';
 import StoryFrame from './components/StoryFrame.vue'
+import LoadingFrame from './components/LoadingFrame.vue'
 
 export default {
   name: 'App',
   components: {
-    StoryFrame
+    StoryFrame,
+    LoadingFrame
   },
   data() {
     return {
+        isLoading: true,
         frames: [],
         selectedIndex: 0
     }
@@ -32,8 +36,16 @@ export default {
     try {
         const res = await axios.get('http://localhost:3000/api/frames');
         this.frames = res.data;
+        this.isLoading = false;
     } catch (error) {
         console.log(error);
+    }
+  },
+  computed: {
+    cssProps() {
+        return {
+            '--background-color': this.frames[this.selectedIndex].colors.bg
+        }
     }
   }
 }
@@ -47,6 +59,14 @@ export default {
     grid-column-gap: 1%;
     justify-content: space-between;
     padding: 60px 0 60px 0;
-    height: 90vh
 }
+
+.app.loading {
+    background-color: #ffc100;
+}
+
+.app.loaded {
+    background-color: var(--background-color);
+}
+
 </style>
