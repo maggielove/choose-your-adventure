@@ -1,11 +1,14 @@
 <template>
   <div
     class="app"
-     v-bind:style="{ backgroundColor: this.frames[selectedIndex].colors.bg }"
->
+    v-if="this.frames.length > 0"
+    v-bind:style="{ backgroundColor: this.frames[selectedIndex].colors.bg }"
+  >
     <StoryFrame
         v-bind:frames="this.frames"
         v-bind:selectedIndex="this.selectedIndex"
+        @update_index="(controlIndex) =>
+        this.selectedIndex = this.frames[this.selectedIndex].controls[controlIndex].linkindex"
     />
   </div>
 </template>
@@ -22,7 +25,7 @@ export default {
   data() {
     return {
         frames: [],
-        selectedIndex: 1
+        selectedIndex: 0
     }
   },
   async created() {
@@ -38,11 +41,12 @@ export default {
 
 <style>
 .app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  padding: 60px 0 60px 0;
+    display: grid;
+    text-align: center;
+    grid-template-columns: repeat(14, 1fr);
+    grid-column-gap: 1%;
+    justify-content: space-between;
+    padding: 60px 0 60px 0;
+    height: 90vh
 }
 </style>
