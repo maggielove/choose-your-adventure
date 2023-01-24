@@ -56,10 +56,9 @@ export default {
     display: grid;
     text-align: center;
     grid-template-columns: repeat(14, 1fr);
+    grid-template-rows: repeat(14, 1fr);
     grid-column-gap: 1%;
-    justify-content: space-between;
-    padding: 60px 0 60px 0;
-    height: 100%;
+    height: 100vh;
 }
 
 .app.loading {

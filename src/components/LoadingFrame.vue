@@ -27,6 +27,7 @@ body {
 #text-wrapper {
     display: flex;
     grid-column: 2 / 14;
+    grid-row: 2 / 14;
     flex-direction: row;
     align-items: center;
     justify-content: center;

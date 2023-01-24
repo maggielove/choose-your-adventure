@@ -1,7 +1,7 @@
 <template>
   <div id="game-container" :style="cssProps">
-      <h1 v-if="frames[selectedIndex]">{{ frames[selectedIndex].title }}</h1>
       <span id="index">{{ selectedIndex + 1 }}</span>
+      <h1 v-if="frames[selectedIndex]">{{ frames[selectedIndex].title }}</h1>
       <div v-if="frames[selectedIndex].content.length === 1" class="narrative text-only"
         v-html="frames[selectedIndex].content[0].text"
       >
@@ -10,7 +10,9 @@
         <div id="text" v-html="frames[selectedIndex].content[0].text">
         </div>
         <div id="illustration">
-            <img v-bind:src="require('../assets/' + frames[selectedIndex].content[1].src)" />
+            <img v-bind:src="require('../assets/' + frames[selectedIndex].content[1].src)"
+                v-bind:alt="frames[selectedIndex].content[1].alt"
+            />
         </div>
       </div>
       <ul class="controls-container" v-bind:class="{ 'single-button':
@@ -68,7 +70,9 @@ export default {
 
 #game-container {
     display: grid;
+    grid-template-rows: repeat(11, minmax(0, 1fr));
     grid-template-columns: repeat(11, 1fr);
+    grid-row: 2 / 14;
     justify-content: center;
     border: 1rem solid var(--font-color);
     grid-column: 2 / 14;
@@ -81,31 +85,43 @@ h1, #index, .control {
 }
 
 h1 {
-    display: grid;
-    text-transform: uppercase;
-    grid-column: 2 / 11;
+    display: flex;
+    margin: 0;
+    grid-column: 2 / 12;
+    grid-row: 2 / 3;
     font-size: 3.75rem;
-    white-space: nowrap;
     color: var(--font-color);
+    text-transform: uppercase;
+    letter-spacing: 0.4rem;
+    justify-content: center;
+    border: 1px solid black;
 }
 
 #index {
     display: grid;
+    grid-row: 1 / 2;
     grid-column: 13 / 14;
     font-size: 6.25rem;
-    padding: 0 0 0 0.25em;
+    padding: 0 0 1em 0.25em;
     line-height: 1;
     transform: translate(1rem, -1.5rem);
 }
 
 .narrative {
     display: grid;
-    grid-column: 3 / 11;
+    grid-column: 2 / 12;
+    grid-row: 4 / 10;
     grid-auto-flow: column;
-    grid-column-gap: 1fr;
     text-align: left;
+    border: 1px solid black;
+}
+
+.narrative p {
     font-family: "Graebenbach Mono", sans-serif;
-    font-weight: regular;
+    font-weight: normal;
+    font-size: 0.8125rem;
+    line-height: 1.46;
+    letter-spacing: 0;
 }
 
 .narrative.text-only {
@@ -130,6 +146,7 @@ h1 {
     display: grid;
     grid-auto-flow: column;
     grid-column: 5 / 8;
+    border: 1px solid red;
 }
 
 .narrative.illustrated img {
@@ -142,6 +159,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     grid-column: 1 / 14;
+    grid-row: 11 / 12;
     transform: translateY(1rem);
 }
 
