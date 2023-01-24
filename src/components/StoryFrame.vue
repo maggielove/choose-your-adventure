@@ -94,7 +94,6 @@ h1 {
     text-transform: uppercase;
     letter-spacing: 0.4rem;
     justify-content: center;
-    border: 1px solid black;
 }
 
 #index {
@@ -107,52 +106,6 @@ h1 {
     transform: translate(1rem, -1.5rem);
 }
 
-.narrative {
-    display: grid;
-    grid-column: 2 / 12;
-    grid-row: 4 / 10;
-    grid-auto-flow: column;
-    text-align: left;
-    border: 1px solid black;
-}
-
-.narrative p {
-    font-family: "Graebenbach Mono", sans-serif;
-    font-weight: normal;
-    font-size: 0.8125rem;
-    line-height: 1.46;
-    letter-spacing: 0;
-}
-
-.narrative.text-only {
-    display: block;
-    columns: 2;
-    column-gap: 10%;
-}
-
-.narrative.text-only p:first-child {
-    margin-top: 0;
-}
-
-.narrative.illustrated {
-    grid-template-columns: repeat(7, 1fr);
-}
-
-.narrative.illustrated #text {
-    grid-column: 1 / 4;
-}
-
-.narrative.illustrated #illustration {
-    display: grid;
-    grid-auto-flow: column;
-    grid-column: 5 / 8;
-    border: 1px solid red;
-}
-
-.narrative.illustrated img {
-    max-width: 100%;
-    max-height: 100%;
-}
 
 .controls-container {
     margin: 0;
@@ -189,5 +142,98 @@ ul {
 
 .control:hover {
     cursor: pointer;
+}
+
+.narrative {
+    display: grid;
+    grid-column: 2 / 12;
+    grid-row: 4 / 10;
+    grid-auto-flow: column;
+    text-align: left;
+}
+
+.narrative p {
+    font-family: "Graebenbach Mono", sans-serif;
+    font-weight: normal;
+    font-size: 0.8125rem;
+    line-height: 1.46;
+    letter-spacing: 0;
+}
+
+.narrative.text-only {
+    display: block;
+    columns: 2;
+    column-gap: 10%;
+}
+
+.narrative.text-only p:first-child {
+    margin-top: 0;
+}
+
+.narrative.illustrated {
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.narrative.illustrated #text {
+    grid-column: 1 / 4;
+}
+
+.narrative.illustrated #illustration {
+    display: grid;
+    grid-auto-flow: column;
+    grid-column: 5 / 8;
+}
+
+.narrative.illustrated img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+@media only screen and (max-width: 1086px) {
+    h1 {
+        line-height: 1;
+    }
+
+    .narrative {
+        margin-top: 1rem;
+        overflow-y: scroll;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .app.loaded {
+        min-height: 150vh;
+    }
+
+    h1 {
+        font-size: 2rem;
+        letter-spacing: 0.1rem;
+    }
+
+    .narrative {
+        display: flex;
+        grid-row-start: 3;
+        text-align: center;
+        margin-top: 8px;
+    }
+
+    .narrative.illustrated {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .narrative.illustrated #text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .narrative.illustrated #illustration {
+        display: flex;
+    }
+
+    .narrative.text-only {
+        display: flex;
+        flex-direction: column;
+    }
 }
 </style>

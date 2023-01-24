@@ -56,7 +56,7 @@ export default {
     display: grid;
     text-align: center;
     grid-template-columns: repeat(14, 1fr);
-    grid-template-rows: repeat(14, 1fr);
+    grid-template-rows: repeat(14, minmax(0, 1fr));
     grid-column-gap: 1%;
     height: 100vh;
 }
