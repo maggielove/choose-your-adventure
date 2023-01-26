@@ -15,9 +15,9 @@
             />
         </div>
       </div>
-      <ul class="controls-container" v-bind:class="{ 'single-button':
+       <ul class="controls-container" v-bind:class="{ 'single-button':
           frames[selectedIndex] && frames[selectedIndex].controls.length === 1 }"
-      >
+       >
           <li v-if="frames[selectedIndex] && frames[selectedIndex].controls.length === 2"><button class="control left"
             v-on:click="$emit('update_index', 0)">{{ frames[selectedIndex].controls[0].text }}
             </button></li>
@@ -111,6 +111,7 @@ h1 {
     margin: 0;
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
     grid-column: 1 / 14;
     grid-row: 11 / 12;
     transform: translateY(1rem);
@@ -171,17 +172,23 @@ ul {
 }
 
 .narrative.illustrated {
-    grid-template-columns: repeat(7, 1fr);
+    display: flex;
+    flex-direction: row;
+    /* keeps 1 column width between frame and bottom of narrative */
+    align-items: flex-end;
+    justify-content: space-between;
 }
 
 .narrative.illustrated #text {
-    grid-column: 1 / 4;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    max-width: 40%;
 }
 
 .narrative.illustrated #illustration {
-    display: grid;
-    grid-auto-flow: column;
-    grid-column: 5 / 8;
+    display: flex;
+    max-width: 40%;
 }
 
 .narrative.illustrated img {
@@ -196,13 +203,25 @@ ul {
 
     .narrative {
         margin-top: 1rem;
-        overflow-y: scroll;
+        /* overflow-y: scroll; */
     }
 }
 
 @media only screen and (max-width: 375px) {
     .app.loaded {
-        min-height: 150vh;
+        height: 100%;
+    }
+
+    #game-container {
+        display: flex;
+        align-content: stretch;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    #index {
+        padding-bottom: 0;
+        align-self: flex-end;
     }
 
     h1 {
@@ -215,20 +234,27 @@ ul {
         grid-row-start: 3;
         text-align: center;
         margin-top: 8px;
+        max-width: 80%;
+        align-self: center;
     }
 
     .narrative.illustrated {
         display: flex;
+        flex-wrap: wrap;
         flex-direction: column;
+        align-content: space-around;
     }
 
     .narrative.illustrated #text {
         display: flex;
         flex-direction: column;
+        max-width: 80%;
     }
 
     .narrative.illustrated #illustration {
         display: flex;
+        max-width: 80%;
+        margin-top: 1.5rem;
     }
 
     .narrative.text-only {
