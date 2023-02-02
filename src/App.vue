@@ -9,6 +9,7 @@
         v-else-if="this.isLoading === false"
         v-bind:frames="this.frames"
         v-bind:selectedIndex="this.selectedIndex"
+        v-model="selectedIndex"
         @update_index="(controlIndex) =>
         this.selectedIndex = this.frames[this.selectedIndex].controls[controlIndex].linkindex" />
   </div>
@@ -30,6 +31,14 @@ export default {
         isLoading: true,
         frames: [],
         selectedIndex: 0
+    }
+  },
+  watch: {
+    selectedIndex(oldIndex, newIndex) {
+        if (newIndex != oldIndex) {
+            document.querySelector('body').style.backgroundColor =
+            this.frames[this.selectedIndex].colors.bg;
+        }
     }
   },
   async created() {
@@ -69,6 +78,7 @@ export default {
 
 .app.loaded {
     background-color: var(--background-color);
+    height: 100%;
 }
 
 </style>

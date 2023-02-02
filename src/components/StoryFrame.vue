@@ -69,9 +69,8 @@ export default {
 }
 
 #game-container {
-    display: grid;
-    grid-template-rows: repeat(11, minmax(0, 1fr));
-    grid-template-columns: repeat(11, 1fr);
+    display: flex;
+    flex-direction: column;
     grid-row: 2 / 14;
     justify-content: center;
     border: 1rem solid var(--font-color);
@@ -86,9 +85,7 @@ h1, #index, .control {
 
 h1 {
     display: flex;
-    margin: 0;
-    grid-column: 2 / 12;
-    grid-row: 2 / 3;
+    margin: 0 calc(100% / 11);
     font-size: 3.75rem;
     color: var(--font-color);
     text-transform: uppercase;
@@ -97,11 +94,10 @@ h1 {
 }
 
 #index {
-    display: grid;
-    grid-row: 1 / 2;
-    grid-column: 13 / 14;
+    display: flex;
+    align-self: flex-end;
     font-size: 6.25rem;
-    padding: 0 0 1em 0.25em;
+    padding: 0 0 0.1em 0.2em;
     line-height: 1;
     transform: translate(1rem, -1.5rem);
 }
@@ -147,6 +143,7 @@ ul {
 
 .narrative {
     display: grid;
+    padding: 20px calc(100% / 11) calc(100% / 11) calc(100% / 11);
     grid-column: 2 / 12;
     grid-row: 4 / 10;
     grid-auto-flow: column;
@@ -203,20 +200,17 @@ ul {
 
     .narrative {
         margin-top: 1rem;
-        /* overflow-y: scroll; */
     }
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 764px) {
     .app.loaded {
         height: 100%;
     }
 
     #game-container {
         display: flex;
-        align-content: stretch;
         flex-direction: column;
-        justify-content: flex-start;
     }
 
     #index {
