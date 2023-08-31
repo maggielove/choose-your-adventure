@@ -1,4 +1,4 @@
-# Type/Code frontend dev exercise
+# My First Vue.js app
 ​
 ## To Develop Locally
 ​
